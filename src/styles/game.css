@@ -1,0 +1,44 @@
+.game-view {
+  min-height: 100vh;
+  color: #f5f1e8;
+  background: #161616;
+}
+
+.background-layer,
+.portrait-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.background-layer {
+  background-position: center;
+  background-size: cover;
+}
+
+.text-box {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+  padding: 20px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 8px;
+  background: rgb(0 0 0 / 70%);
+}
+
+.choice-list {
+  display: grid;
+  gap: 8px;
+}
+
+.debug-panel {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  max-width: 320px;
+  padding: 12px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 8px;
+  background: rgb(0 0 0 / 70%);
+}

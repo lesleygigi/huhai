@@ -1,0 +1,22 @@
+{
+  "backgrounds": {
+    "sha_qiu_night": "/images/backgrounds/sha_qiu_night.webp",
+    "side_hall_candle": "/images/backgrounds/side_hall_candle.webp"
+  },
+  "portraits": {
+    "huhai": {
+      "anxious": "/images/portraits/huhai/anxious.webp",
+      "calm": "/images/portraits/huhai/calm.webp"
+    },
+    "zhao_gao": {
+      "serious": "/images/portraits/zhao_gao/serious.webp",
+      "smile": "/images/portraits/zhao_gao/smile.webp"
+    }
+  },
+  "music": {
+    "night_palace": "/audio/music/night_palace.mp3"
+  },
+  "sfx": {
+    "door_open": "/audio/sfx/door_open.mp3"
+  }
+}

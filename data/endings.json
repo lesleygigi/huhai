@@ -1,0 +1,51 @@
+[
+  {
+    "id": "he_mingjun_nixi",
+    "name": "HE·明君逆袭",
+    "type": "HE",
+    "route": "明君线",
+    "conditions": {
+      "min": {
+        "prestige": 7
+      },
+      "max": {
+        "cruelty": 3,
+        "fear": 2
+      },
+      "flags": ["巨鹿大捷"]
+    }
+  },
+  {
+    "id": "be_kuilei_zhisi",
+    "name": "BE·傀儡至死",
+    "type": "BE",
+    "route": "亡国线",
+    "conditions": {
+      "min": {
+        "fear": 6,
+        "zhao_gao": 5
+      },
+      "max": {
+        "prestige": 1
+      },
+      "flags": []
+    }
+  },
+  {
+    "id": "te_zhenshi_ershi",
+    "name": "TE·真实的二世",
+    "type": "TE",
+    "route": "亡国线",
+    "conditions": {
+      "min": {
+        "fear": 4,
+        "zhao_gao": 4
+      },
+      "max": {
+        "prestige": 0,
+        "cruelty": 3
+      },
+      "flags": []
+    }
+  }
+]

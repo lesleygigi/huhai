@@ -1,0 +1,30 @@
+[
+  {
+    "id": "forged_edict_accomplice",
+    "name": "矫诏同谋",
+    "chapter": "序章",
+    "description": "赵高视胡亥为同谋，主线开启。",
+    "exclusiveGroup": "prologue_route"
+  },
+  {
+    "id": "patient_rebellion",
+    "name": "隐忍待发",
+    "chapter": "序章",
+    "description": "胡亥表面顺从，暗中布局。",
+    "exclusiveGroup": "prologue_route"
+  },
+  {
+    "id": "silent_accomplice",
+    "name": "知情不报",
+    "chapter": "序章",
+    "description": "胡亥知情但未能阻止矫诏。",
+    "exclusiveGroup": "prologue_route"
+  },
+  {
+    "id": "attempted_report",
+    "name": "曾试图告发",
+    "chapter": "序章",
+    "description": "胡亥曾试图向蒙毅告发赵高。",
+    "exclusiveGroup": null
+  }
+]
