@@ -1,4 +1,5 @@
 INCLUDE prologue.ink
+INCLUDE chapter1.ink
 
 VAR cruelty = 0
 VAR prestige = 0
@@ -10,7 +11,9 @@ VAR zhang_han = 0
 VAR meng_yi = 0
 VAR strategy = 0
 VAR zhao_gao_evidence = 0
+VAR chapter_name = ""
+VAR scene_name = ""
 
-LIST flags = 矫诏同谋, 隐忍待发, 知情不报, 曾试图告发, 庇护宗室, 宗室屠夫, 保李斯, 反杀赵高
+LIST flags = 矫诏同谋, 隐忍待发, 知情不报, 曾试图告发, 庇护宗室, 宗室屠夫, 保李斯, 反杀赵高, 坚持赐死, 扶苏流放, 扶苏同盟, 蒙氏处死, 蒙氏留用, 蒙氏免官, 蒙毅的默契
 
 -> prologue_start

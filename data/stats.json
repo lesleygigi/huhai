@@ -32,11 +32,51 @@
     "description": "赵高对胡亥的信任或轻视程度。"
   },
   {
+    "id": "clan_support",
+    "name": "宗室支持度",
+    "initial": 0,
+    "min": -5,
+    "max": 10,
+    "description": "嬴姓宗室对胡亥的支持程度。"
+  },
+  {
+    "id": "ziying",
+    "name": "子婴好感度",
+    "initial": 0,
+    "min": 0,
+    "max": 10,
+    "description": "子婴对胡亥的信任与支持程度。"
+  },
+  {
+    "id": "zhang_han",
+    "name": "章邯好感度",
+    "initial": 0,
+    "min": -5,
+    "max": 10,
+    "description": "章邯对胡亥的忠诚程度。"
+  },
+  {
+    "id": "meng_yi",
+    "name": "蒙毅好感度",
+    "initial": 0,
+    "min": -5,
+    "max": 10,
+    "description": "蒙毅对胡亥的态度。"
+  },
+  {
     "id": "strategy",
     "name": "权谋值",
     "initial": 0,
     "min": -5,
     "max": 20,
     "description": "胡亥暗中积蓄力量的程度。"
+  },
+  {
+    "id": "zhao_gao_evidence",
+    "name": "赵高罪证",
+    "initial": 0,
+    "min": 0,
+    "max": 5,
+    "description": "秘密记录的赵高罪行数量。"
   }
 ]

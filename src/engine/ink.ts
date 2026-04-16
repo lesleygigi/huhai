@@ -15,8 +15,10 @@ export type StorySnapshot = {
 export type StoryRuntime = {
   getSnapshot: () => StorySnapshot;
   choose: (index: number) => StorySnapshot;
+  jumpTo: (path: string) => StorySnapshot;
   restart: () => StorySnapshot;
   toJson: () => string;
+  loadJson: (stateJson: string) => StorySnapshot;
 };
 
 const storyJsonPath = "/story/main.json";
@@ -33,6 +35,8 @@ const trackedVariables = [
   "strategy",
   "zhao_gao_evidence",
   "flags",
+  "chapter_name",
+  "scene_name",
 ] as const;
 
 export async function loadStory(): Promise<StoryRuntime> {
@@ -59,12 +63,22 @@ export function createStoryRuntime(storyJson: Record<string, unknown> | string):
       snapshot = continueToChoice(story);
       return snapshot;
     },
+    jumpTo: (path: string) => {
+      story.ChoosePathString(path);
+      snapshot = continueToChoice(story);
+      return snapshot;
+    },
     restart: () => {
       story.ResetState();
       snapshot = continueToChoice(story);
       return snapshot;
     },
     toJson: () => story.state.ToJson(),
+    loadJson: (stateJson: string) => {
+      story.state.LoadJson(stateJson);
+      snapshot = continueToChoice(story);
+      return snapshot;
+    },
   };
 }
 

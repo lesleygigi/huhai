@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 .npm-cache
+.uv-cache
+.venv
+.u2net
 *.local
 
 # Editor directories and files

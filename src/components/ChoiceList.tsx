@@ -4,6 +4,10 @@ type ChoiceListProps = {
 };
 
 export function ChoiceList({ choices, onChoose }: ChoiceListProps) {
+  if (choices.length === 0) {
+    return null;
+  }
+
   return (
     <div className="choice-list">
       {choices.map((choice, index) => (

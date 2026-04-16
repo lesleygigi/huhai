@@ -6,13 +6,77 @@
     "route": "明君线",
     "conditions": {
       "min": {
-        "prestige": 7
+        "prestige": 7,
+        "clan_support": 3,
+        "ziying": 4,
+        "zhang_han": 5
       },
       "max": {
         "cruelty": 3,
         "fear": 2
       },
-      "flags": ["巨鹿大捷"]
+      "flags": ["巨鹿大捷"],
+      "forbiddenFlags": ["宗室屠夫"]
+    }
+  },
+  {
+    "id": "he_chongsu_tianxia",
+    "name": "HE·重塑天下",
+    "type": "HE",
+    "route": "明君线",
+    "conditions": {
+      "min": {
+        "prestige": 5,
+        "clan_support": 3,
+        "ziying": 4,
+        "zhang_han": 3
+      },
+      "max": {
+        "cruelty": 2,
+        "fear": 2
+      },
+      "flags": ["庇护宗室"],
+      "forbiddenFlags": ["宗室屠夫"]
+    }
+  },
+  {
+    "id": "he_kuilei_fanshen",
+    "name": "HE·傀儡翻身",
+    "type": "HE",
+    "route": "傀儡翻身线",
+    "conditions": {
+      "min": {
+        "prestige": 4,
+        "clan_support": 1,
+        "ziying": 3,
+        "zhang_han": 2,
+        "strategy": 5
+      },
+      "max": {
+        "cruelty": 3,
+        "fear": 3
+      },
+      "flags": ["反杀赵高"],
+      "forbiddenFlags": ["宗室屠夫"]
+    }
+  },
+  {
+    "id": "be_clan_butcher",
+    "name": "BE·宗室屠夫",
+    "type": "BE",
+    "route": "亡国线",
+    "conditions": {
+      "min": {
+        "cruelty": 4,
+        "fear": 5,
+        "zhao_gao": 3
+      },
+      "max": {
+        "prestige": 0,
+        "ziying": 1,
+        "zhang_han": 1
+      },
+      "flags": ["宗室屠夫"]
     }
   },
   {
@@ -26,9 +90,33 @@
         "zhao_gao": 5
       },
       "max": {
-        "prestige": 1
+        "cruelty": 2,
+        "prestige": 1,
+        "clan_support": 0,
+        "ziying": 1,
+        "strategy": 2
       },
       "flags": []
+    }
+  },
+  {
+    "id": "be_wangguo_zuiren",
+    "name": "BE·亡国罪人",
+    "type": "BE",
+    "route": "亡国线",
+    "conditions": {
+      "min": {
+        "cruelty": 3,
+        "fear": 4,
+        "zhao_gao": 3
+      },
+      "max": {
+        "prestige": -1,
+        "clan_support": 0,
+        "ziying": 1,
+        "zhang_han": 0
+      },
+      "flags": ["坐视叛乱", "猜忌章邯"]
     }
   },
   {
@@ -42,10 +130,35 @@
         "zhao_gao": 4
       },
       "max": {
+        "cruelty": 3,
         "prestige": 0,
-        "cruelty": 3
+        "clan_support": 0,
+        "ziying": 1,
+        "zhang_han": 1,
+        "strategy": 2
       },
       "flags": []
+    }
+  },
+  {
+    "id": "te_chilai_juexing",
+    "name": "TE·迟来的觉醒",
+    "type": "TE",
+    "route": "亡国线",
+    "conditions": {
+      "min": {
+        "fear": 4,
+        "zhao_gao": 4
+      },
+      "max": {
+        "cruelty": 3,
+        "prestige": 0,
+        "clan_support": 0,
+        "ziying": 1,
+        "zhang_han": 1,
+        "strategy": 2
+      },
+      "flags": ["指鹿为马"]
     }
   }
 ]

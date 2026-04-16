@@ -24,7 +24,189 @@
     "id": "attempted_report",
     "name": "曾试图告发",
     "chapter": "序章",
-    "description": "胡亥曾试图向蒙毅告发赵高。",
+    "description": "胡亥曾试图向蒙毅告发赵高，是英雄救赎线前置。",
     "exclusiveGroup": null
+  },
+  {
+    "id": "execute_fusu",
+    "name": "坚持赐死",
+    "chapter": "第一章",
+    "description": "维持赐死扶苏的诏命，残暴值和恐惧值上升。",
+    "exclusiveGroup": "fusu_policy"
+  },
+  {
+    "id": "exile_fusu",
+    "name": "扶苏流放",
+    "chapter": "第一章",
+    "description": "改赐死为流放，宗室支持上升，赵高好感下降。",
+    "exclusiveGroup": "fusu_policy"
+  },
+  {
+    "id": "ally_fusu",
+    "name": "扶苏同盟",
+    "chapter": "第一章",
+    "description": "隐忍线暗中赦免扶苏并尝试结盟。",
+    "exclusiveGroup": "fusu_policy"
+  },
+  {
+    "id": "execute_meng",
+    "name": "蒙氏处死",
+    "chapter": "第一章",
+    "description": "处死蒙恬蒙毅，赵高好感上升，威望下降。",
+    "exclusiveGroup": "meng_policy"
+  },
+  {
+    "id": "retain_meng",
+    "name": "蒙氏留用",
+    "chapter": "第一章",
+    "description": "赦免并留用蒙氏，宗室支持和蒙毅好感上升。",
+    "exclusiveGroup": "meng_policy"
+  },
+  {
+    "id": "dismiss_meng",
+    "name": "蒙氏免官",
+    "chapter": "第一章",
+    "description": "夺爵免官，蒙氏退出明面朝局。",
+    "exclusiveGroup": "meng_policy"
+  },
+  {
+    "id": "meng_yi_understanding",
+    "name": "蒙毅的默契",
+    "chapter": "第一章",
+    "description": "曾试图告发后又赦免蒙毅，获得蒙毅暗中默契。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "clan_butcher",
+    "name": "宗室屠夫",
+    "chapter": "第二章",
+    "description": "大开杀戒，宗室支持归零，锁死多数 HE。",
+    "exclusiveGroup": "clan_policy"
+  },
+  {
+    "id": "clan_house_arrest",
+    "name": "软禁宗室",
+    "chapter": "第二章",
+    "description": "只杀威胁者，其余宗室软禁，HE 难度增加。",
+    "exclusiveGroup": "clan_policy"
+  },
+  {
+    "id": "protect_clan",
+    "name": "庇护宗室",
+    "chapter": "第二章",
+    "description": "保护宗室，宗室支持和子婴好感上升，解锁重塑天下。",
+    "exclusiveGroup": "clan_policy"
+  },
+  {
+    "id": "execute_li_si",
+    "name": "诛杀李斯",
+    "chapter": "第三章",
+    "description": "赵高好感上升，锁死英雄救赎。",
+    "exclusiveGroup": "li_si_policy"
+  },
+  {
+    "id": "protect_li_si",
+    "name": "保李斯",
+    "chapter": "第三章",
+    "description": "赵高视你为死敌，是英雄救赎线关键条件之一。",
+    "exclusiveGroup": "li_si_policy"
+  },
+  {
+    "id": "use_zhang_han",
+    "name": "重用章邯",
+    "chapter": "第三章",
+    "description": "章邯好感上升，获得军事支柱。",
+    "exclusiveGroup": "rebellion_policy"
+  },
+  {
+    "id": "appeasement_seen_weak",
+    "name": "软弱可欺",
+    "chapter": "第三章",
+    "description": "安抚招安导致威望下降，六国加速起兵。",
+    "exclusiveGroup": "rebellion_policy"
+  },
+  {
+    "id": "ignore_rebellion",
+    "name": "坐视叛乱",
+    "chapter": "第三章",
+    "description": "置之不理导致威望大降、恐惧上升，锁死多数 HE。",
+    "exclusiveGroup": "rebellion_policy"
+  },
+  {
+    "id": "full_support_zhang_han",
+    "name": "全力支持章邯",
+    "chapter": "第三章",
+    "description": "章邯好感大幅上升，项梁死。",
+    "exclusiveGroup": "zhang_han_policy"
+  },
+  {
+    "id": "suspect_zhang_han",
+    "name": "猜忌章邯",
+    "chapter": "第三章",
+    "description": "章邯好感下降，战局转坏。",
+    "exclusiveGroup": "zhang_han_policy"
+  },
+  {
+    "id": "deer_is_deer",
+    "name": "指鹿为鹿",
+    "chapter": "第四章",
+    "description": "当众指出鹿是鹿，威望上升，赵高转为死敌。",
+    "exclusiveGroup": "deer_trial"
+  },
+  {
+    "id": "deer_is_horse",
+    "name": "指鹿为马",
+    "chapter": "第四章",
+    "description": "顺从赵高，恐惧上升，威望下降，锁死多数 HE。",
+    "exclusiveGroup": "deer_trial"
+  },
+  {
+    "id": "countermove",
+    "name": "反将一军",
+    "chapter": "第四章",
+    "description": "隐忍线反制赵高，获得刺杀准备。",
+    "exclusiveGroup": "deer_trial"
+  },
+  {
+    "id": "kill_zhao_gao",
+    "name": "反杀赵高",
+    "chapter": "第三章/第四章",
+    "description": "赵高死亡，威望、宗室支持和权谋值提升。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "send_zhao_gao_away",
+    "name": "调虎离山",
+    "chapter": "第三章/第四章",
+    "description": "派赵高监军，获得蚕食赵党机会。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "personal_campaign",
+    "name": "亲征",
+    "chapter": "第四章",
+    "description": "赵高已死或离京后亲征，威望上升，恐惧归零。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "julu_breakout",
+    "name": "巨鹿解围",
+    "chapter": "第五章",
+    "description": "明君线围而不战，解除巨鹿之围。",
+    "exclusiveGroup": "julu_result"
+  },
+  {
+    "id": "julu_victory_campaign",
+    "name": "巨鹿大捷·亲征",
+    "chapter": "第五章",
+    "description": "明君线亲征大捷，威望和章邯好感大幅上升。",
+    "exclusiveGroup": "julu_result"
+  },
+  {
+    "id": "julu_victory",
+    "name": "巨鹿大捷",
+    "chapter": "第五章",
+    "description": "巨鹿战局胜利，用于明君类 HE 判定。",
+    "exclusiveGroup": "julu_result"
   }
 ]

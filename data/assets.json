@@ -5,12 +5,18 @@
   },
   "portraits": {
     "huhai": {
-      "anxious": "/images/portraits/huhai/anxious.webp",
-      "calm": "/images/portraits/huhai/calm.webp"
+      "anxious": "/images/portraits/huhai/photo_cutout.png",
+      "calm": "/images/portraits/huhai/photo_cutout.png"
     },
     "zhao_gao": {
-      "serious": "/images/portraits/zhao_gao/serious.webp",
-      "smile": "/images/portraits/zhao_gao/smile.webp"
+      "serious": "/images/portraits/zhao_gao/photo_cutout.png",
+      "smile": "/images/portraits/zhao_gao/photo_cutout.png"
+    },
+    "li_si": {
+      "serious": "/images/portraits/li_si/photo_cutout.png"
+    },
+    "meng_yi": {
+      "serious": "/images/portraits/meng_yi/photo_cutout.png"
     }
   },
   "music": {
