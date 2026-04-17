@@ -7,7 +7,6 @@ import { FlagsPanel } from "./FlagsPanel";
 import { SavePanel } from "./SavePanel";
 import { LoadPanel } from "./LoadPanel";
 import { DebugPanel } from "./DebugPanel";
-import { ShortcutsPanel } from "./ShortcutsPanel";
 import { type ChoiceHistoryItem } from "../engine/debug";
 import { type SlotInfo } from "../engine/save";
 
@@ -18,7 +17,6 @@ type MenuPage =
   | "stats"
   | "relations"
   | "flags"
-  | "shortcuts"
   | "debug";
 
 type GameMenuProps = {
@@ -38,7 +36,7 @@ type GameMenuProps = {
   onSave: (slotId: number) => void;
   onLoad: (slotId: number) => void;
   onClear: (slotId: number) => void;
-  onJump: (path: string) => void;
+  onShortcuts: () => void;
   audioInfo: {
     music: string | undefined;
     sfx: string[];
@@ -61,18 +59,12 @@ export function GameMenu({
   onSave,
   onLoad,
   onClear,
-  onJump,
+  onShortcuts,
   audioInfo,
 }: GameMenuProps) {
   const [currentPage, setCurrentPage] = useState<MenuPage>("main");
 
   if (!isOpen) return null;
-
-  const handleJump = (path: string) => {
-    onJump(path);
-    onClose();
-    setCurrentPage("main");
-  };
 
   const renderContent = () => {
     switch (currentPage) {
@@ -99,8 +91,6 @@ export function GameMenu({
         return <RelationsPanel variables={snapshot.variables} />;
       case "flags":
         return <FlagsPanel flagsValue={snapshot.variables.flags} />;
-      case "shortcuts":
-        return <ShortcutsPanel onJump={handleJump} />;
       case "debug":
         return (
           <DebugPanel
@@ -131,7 +121,14 @@ export function GameMenu({
             <button type="button" onClick={() => setCurrentPage("flags")}>
               已获标记
             </button>
-            <button type="button" onClick={() => setCurrentPage("shortcuts")}>
+            <button
+              type="button"
+              onClick={() => {
+                onShortcuts();
+                onClose();
+                setCurrentPage("main");
+              }}
+            >
               快捷通道
             </button>
             <button type="button" onClick={onHistory}>
@@ -175,9 +172,7 @@ export function GameMenu({
                       ? "人物好感"
                       : currentPage === "flags"
                         ? "已获标记"
-                        : currentPage === "shortcuts"
-                          ? "快捷通道"
-                          : "调试信息"}
+                        : "调试信息"}
           </h1>
         </div>
         {currentPage === "main" ? (

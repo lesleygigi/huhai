@@ -28,6 +28,48 @@
     "exclusiveGroup": null
   },
   {
+    "id": "righteous_report",
+    "name": "大义灭亲",
+    "chapter": "序章",
+    "description": "胡亥成功向蒙毅告发赵高，保全始皇遗诏，进入扶苏即位 IF 线。",
+    "exclusiveGroup": "prologue_route"
+  },
+  {
+    "id": "personally_execute_fusu",
+    "name": "亲笔赐死扶苏",
+    "chapter": "序章",
+    "description": "胡亥在矫诏定策中决定赐死扶苏，直接背负扶苏之死。",
+    "exclusiveGroup": "fusu_fate"
+  },
+  {
+    "id": "protect_fusu",
+    "name": "力保扶苏",
+    "chapter": "序章",
+    "description": "胡亥以稳妥为由保住扶苏性命，扶苏被流放巴蜀。",
+    "exclusiveGroup": "fusu_fate"
+  },
+  {
+    "id": "delay_fusu",
+    "name": "缓兵之计",
+    "chapter": "序章",
+    "description": "胡亥暂缓处置扶苏，先召其离开上郡，后续局势保留变数。",
+    "exclusiveGroup": "fusu_fate"
+  },
+  {
+    "id": "secret_record",
+    "name": "秘密记录",
+    "chapter": "第一章",
+    "description": "隐忍线中，胡亥开始秘密记录赵高罪证。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "ziying_alliance",
+    "name": "子婴同盟",
+    "chapter": "第一章",
+    "description": "隐忍线中，胡亥与子婴建立秘密同盟。",
+    "exclusiveGroup": null
+  },
+  {
     "id": "execute_fusu",
     "name": "坚持赐死",
     "chapter": "第一章",
@@ -98,6 +140,55 @@
     "exclusiveGroup": "clan_policy"
   },
   {
+    "id": "grand_projects",
+    "name": "大兴土木",
+    "chapter": "第二章",
+    "description": "继续阿房宫与骊山陵工程，民怨和恐惧上升。",
+    "exclusiveGroup": "project_policy"
+  },
+  {
+    "id": "vested_interests",
+    "name": "触动利益",
+    "chapter": "第二章",
+    "description": "减田租、加商税，稳定黔首但触动豪商旧贵利益。",
+    "exclusiveGroup": "project_policy"
+  },
+  {
+    "id": "zhao_gao_warning",
+    "name": "赵高的警告",
+    "chapter": "第二章",
+    "description": "隐忍线中意识到刺客事件可能是赵高对胡亥的警告。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "guard_vulnerability",
+    "name": "禁卫漏洞",
+    "chapter": "第二章",
+    "description": "刺客事件暴露禁卫漏洞，可借彻查之名安插眼线。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "guard_informants",
+    "name": "禁卫眼线",
+    "chapter": "第二章",
+    "description": "隐忍线中借子婴帮助，在禁卫体系内安插可用眼线。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "openly_resist_zhao",
+    "name": "正面抗赵",
+    "chapter": "第二章",
+    "description": "当众驳回赵高屠戮宗室的要求，赵高警惕大幅提升。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "ziying_protects_clan",
+    "name": "子婴暗中保护宗室",
+    "chapter": "第二章",
+    "description": "隐忍线中委托子婴暗中保护仍可用的宗室成员。",
+    "exclusiveGroup": null
+  },
+  {
     "id": "execute_li_si",
     "name": "诛杀李斯",
     "chapter": "第三章",
@@ -117,6 +208,13 @@
     "chapter": "第三章",
     "description": "章邯好感上升，获得军事支柱。",
     "exclusiveGroup": "rebellion_policy"
+  },
+  {
+    "id": "zhang_han_as_blade",
+    "name": "章邯为刀",
+    "chapter": "第三章",
+    "description": "隐忍线中将章邯视为未来制衡权臣的军方盟友。",
+    "exclusiveGroup": null
   },
   {
     "id": "appeasement_seen_weak",
@@ -147,6 +245,34 @@
     "exclusiveGroup": "zhang_han_policy"
   },
   {
+    "id": "li_si_usable_not_trusted",
+    "name": "李斯可用但不可信",
+    "chapter": "第三章",
+    "description": "隐忍线中保下李斯，用其制衡赵高，但不真正信任他。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "regency",
+    "name": "亲政",
+    "chapter": "第三章",
+    "description": "反杀赵高后，胡亥开始亲掌大政。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "erode_zhao_party",
+    "name": "蚕食赵党",
+    "chapter": "第三章",
+    "description": "赵高离京后，隐忍线趁机替换禁卫和内廷中的赵高党羽。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "garden_politics",
+    "name": "菜园论政",
+    "chapter": "第三章",
+    "description": "子婴以菜园为喻，点出平叛之外还需要给关东黔首活路。",
+    "exclusiveGroup": null
+  },
+  {
     "id": "deer_is_deer",
     "name": "指鹿为鹿",
     "chapter": "第四章",
@@ -166,6 +292,83 @@
     "chapter": "第四章",
     "description": "隐忍线反制赵高，获得刺杀准备。",
     "exclusiveGroup": "deer_trial"
+  },
+  {
+    "id": "assassination_preparation",
+    "name": "刺杀准备",
+    "chapter": "第四章",
+    "description": "反将一军后，子婴提前准备宫中刺杀赵高的方案。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "secret_order_zhang_han",
+    "name": "密诏章邯",
+    "chapter": "第四章",
+    "description": "密诏章邯回师咸阳，以军方力量清洗赵高。",
+    "exclusiveGroup": "zhao_breakout"
+  },
+  {
+    "id": "evidence_ready",
+    "name": "罪证备妥",
+    "chapter": "第四章",
+    "description": "备好赵高阻挠章邯的罪证，用于争取章邯信任。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "zhang_han_returns",
+    "name": "章邯回师",
+    "chapter": "第四章",
+    "description": "章邯率精锐回师咸阳，准备诛杀赵高。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "ambush_plan",
+    "name": "伏兵之计",
+    "chapter": "第四章",
+    "description": "以召赵高入宫为局，章邯伏兵偏殿。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "leave_xianyang",
+    "name": "离京出巡",
+    "chapter": "第四章",
+    "description": "以祭祖为名离开咸阳，摆脱赵高控制。",
+    "exclusiveGroup": "zhao_breakout"
+  },
+  {
+    "id": "informants_escort",
+    "name": "眼线随驾",
+    "chapter": "第四章",
+    "description": "公孙季等眼线随驾护送，防备赵高拦截。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "yongcheng_victory",
+    "name": "雍城大捷",
+    "chapter": "第四章",
+    "description": "雍城对峙中击败阎乐私兵。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "loyalist_success",
+    "name": "勤王成功",
+    "chapter": "第四章",
+    "description": "雍城周边郡县兵马响应勤王诏。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "palace_assassination",
+    "name": "宫中刺杀",
+    "chapter": "第四章",
+    "description": "选择在宫中以毒杀和内应刺杀赵高。",
+    "exclusiveGroup": "zhao_breakout"
+  },
+  {
+    "id": "assassination_execution",
+    "name": "刺杀执行",
+    "chapter": "第四章",
+    "description": "刺杀赵高的调防、投毒、补刀计划进入执行。",
+    "exclusiveGroup": null
   },
   {
     "id": "kill_zhao_gao",
@@ -189,6 +392,62 @@
     "exclusiveGroup": null
   },
   {
+    "id": "zhao_supervises_army",
+    "name": "赵高监军",
+    "chapter": "第四章",
+    "description": "派赵高赴巨鹿监军，使其暂离咸阳。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "purge_zhao_party",
+    "name": "清洗赵党",
+    "chapter": "第四章",
+    "description": "赵高离京后，趁机替换咸阳禁卫和内廷赵党。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "self_directed_reinforce",
+    "name": "自主发兵",
+    "chapter": "第四章",
+    "description": "赵高离京后，胡亥自行批准援章邯之兵。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "abandon_zhang_han",
+    "name": "坐视章邯",
+    "chapter": "第四章",
+    "description": "拒绝援救章邯，巨鹿战局转入亡国线。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "centralize_fiefs",
+    "name": "削藩集权",
+    "chapter": "第四章",
+    "description": "采纳李斯路线，收回诸王封地，强化郡县集权。",
+    "exclusiveGroup": "regency_policy"
+  },
+  {
+    "id": "tui_en_fiefs",
+    "name": "推恩分封",
+    "chapter": "第四章",
+    "description": "以推恩令逐步削弱诸侯实力，避免直接激化宗室。",
+    "exclusiveGroup": "regency_policy"
+  },
+  {
+    "id": "reform_qin_law",
+    "name": "改秦法",
+    "chapter": "第四章",
+    "description": "废肉刑、减株连、减赋税，与民更始。",
+    "exclusiveGroup": "regency_policy"
+  },
+  {
+    "id": "law_reform_discussion",
+    "name": "改法之议",
+    "chapter": "第四章",
+    "description": "与子婴在菜园中讨论改秦法的方向。",
+    "exclusiveGroup": null
+  },
+  {
     "id": "julu_breakout",
     "name": "巨鹿解围",
     "chapter": "第五章",
@@ -208,5 +467,124 @@
     "chapter": "第五章",
     "description": "巨鹿战局胜利，用于明君类 HE 判定。",
     "exclusiveGroup": "julu_result"
+  },
+  {
+    "id": "ending_mingjun",
+    "name": "明君逆袭",
+    "chapter": "第五章",
+    "description": "亲征巨鹿后以军功重塑帝国。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_rebuild_world",
+    "name": "重塑天下",
+    "chapter": "第五章",
+    "description": "保宗室、改秦法，以新的秩序延续秦祚。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_hidden_dragon",
+    "name": "隐龙出渊",
+    "chapter": "第五章",
+    "description": "隐忍线成功诛赵高、平天下。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_redemption",
+    "name": "英雄救赎",
+    "chapter": "第五章",
+    "description": "曾试图告发后赦蒙氏、保宗室、存旧臣，完成救赎线。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_zhang_surrender",
+    "name": "章邯之降",
+    "chapter": "第五章",
+    "description": "巨鹿后大势不可挽，章邯降楚。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "thunder_purge",
+    "name": "雷霆清洗",
+    "chapter": "第五章",
+    "description": "赵高离京后以雷霆手段清洗赵党。",
+    "exclusiveGroup": "zhao_party_purge"
+  },
+  {
+    "id": "divide_and_purge",
+    "name": "分化瓦解",
+    "chapter": "第五章",
+    "description": "赵高离京后分化瓦解其党羽。",
+    "exclusiveGroup": "zhao_party_purge"
+  },
+  {
+    "id": "ending_puppet_break",
+    "name": "傀儡翻身",
+    "chapter": "第五章",
+    "description": "赵高离京后夺回咸阳，审判赵高。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_borrow_blade",
+    "name": "借刀杀人",
+    "chapter": "第五章",
+    "description": "借巨鹿战局除去赵高。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_true_second",
+    "name": "真实的二世",
+    "chapter": "第五章",
+    "description": "望夷宫终局中伏剑自刎。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_betrayed",
+    "name": "众叛亲离",
+    "chapter": "第五章",
+    "description": "望夷宫终局中拼死抵抗失败。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_ziying_inherit",
+    "name": "子婴的继承",
+    "chapter": "第五章",
+    "description": "禅位求生，由子婴接过秦末残局。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_clan_butcher_final",
+    "name": "宗室屠夫终局",
+    "chapter": "第五章",
+    "description": "宗室血债在亡国时回到胡亥面前。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_bashu",
+    "name": "巴蜀之主",
+    "chapter": "第五章",
+    "description": "逃亡后南下汉中，保住秦祀。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_north_wolf",
+    "name": "北方之狼",
+    "chapter": "第五章",
+    "description": "逃亡后投奔章邯，退守北疆。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_east_sea",
+    "name": "东渡沧海",
+    "chapter": "第五章",
+    "description": "隐姓埋名，远走东海。",
+    "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "ending_rise_again",
+    "name": "东山再起",
+    "chapter": "第五章",
+    "description": "隐忍线逃亡后藏于关中，伺机保全宗族。",
+    "exclusiveGroup": "chapter5_ending"
   }
 ]

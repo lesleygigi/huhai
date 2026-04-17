@@ -29,12 +29,14 @@ import {
   writeSettings,
   type GameSettings,
 } from "../engine/settings";
+import { getShortcutPathBySceneName } from "../engine/shortcuts";
 import { BackgroundLayer } from "./BackgroundLayer";
 import { ChoiceList } from "./ChoiceList";
 import { GameMenu } from "./GameMenu";
 import { HistoryPanel } from "./HistoryPanel";
 import { PortraitLayer } from "./PortraitLayer";
 import { SettingsPanel } from "./SettingsPanel";
+import { ShortcutsPanel } from "./ShortcutsPanel";
 import { TextBox } from "./TextBox";
 import "./../styles/game.css";
 
@@ -50,6 +52,25 @@ const speakerCharacterMap: Record<string, string> = {
   蒙毅: "meng_yi",
 };
 
+const knownSpeakers = new Set([
+  ...Object.keys(speakerCharacterMap),
+  "冯去疾",
+  "子婴",
+  "陈胜",
+  "吴广",
+  "使者",
+  "章邯",
+  "韩谈",
+  "属官甲",
+  "公孙季",
+  "阎乐",
+  "刘邦",
+  "项羽",
+  "扶苏",
+  "吕郡守",
+  "将领",
+]);
+
 const defaultPortraitExpressions: Record<string, string> = {
   huhai: "anxious",
   zhao_gao: "serious",
@@ -62,7 +83,7 @@ function getLineSpeaker(line: string): string | undefined {
   const speaker = match?.[1]?.trim();
   
   // 核心逻辑：只有在名单内的名字后面接冒号，才视为对话
-  if (speaker && speaker in speakerCharacterMap) {
+  if (speaker && knownSpeakers.has(speaker)) {
     return speaker;
   }
   
@@ -118,7 +139,11 @@ export function GameView() {
   const [lineIndex, setLineIndex] = useState(0);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [shortcutsOpen, setShortcutsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentShortcutPath, setCurrentShortcutPath] = useState<
+    string | undefined
+  >("prologue_start");
   const [settings, setSettings] = useState<GameSettings>(() => readSettings());
   const [presentation, setPresentation] = useState<PresentationState>(
     initialPresentationState
@@ -198,6 +223,17 @@ export function GameView() {
     });
   }
 
+  function rememberShortcut(snapshot: StorySnapshot, explicitPath?: string) {
+    const path =
+      explicitPath ?? getShortcutPathBySceneName(snapshot.variables.scene_name);
+
+    if (!path) {
+      return;
+    }
+
+    setCurrentShortcutPath(path);
+  }
+
   if (loadState.status === "loading") {
     return (
       <main className="game-view" style={viewStyle}>
@@ -260,6 +296,7 @@ export function GameView() {
       },
     ]);
     setLineIndex(0);
+    rememberShortcut(nextSnapshot);
     setLoadState({ status: "ready", runtime, snapshot: nextSnapshot });
   }
 
@@ -274,6 +311,7 @@ export function GameView() {
     );
     setPresentation(applyStoryTags(initialPresentationState, nextSnapshot.tags));
     setSaveMessage("已重新开始。");
+    setCurrentShortcutPath("prologue_start");
     setLoadState({ status: "ready", runtime, snapshot: nextSnapshot });
   }
 
@@ -289,6 +327,8 @@ export function GameView() {
     );
     setPresentation(applyStoryTags(initialPresentationState, nextSnapshot.tags));
     setSaveMessage(`已跳转至剧情点：${path}`);
+    rememberShortcut(nextSnapshot, path);
+    setShortcutsOpen(false);
     setLoadState({ status: "ready", runtime, snapshot: nextSnapshot });
   }
 
@@ -328,6 +368,7 @@ export function GameView() {
       );
       setPresentation(applyStoryTags(initialPresentationState, nextSnapshot.tags));
       setSaveMessage(`已读档（槽位 ${slotId}）：${new Date(save.savedAt).toLocaleString()}`);
+      rememberShortcut(nextSnapshot);
       setLoadState({ status: "ready", runtime, snapshot: nextSnapshot });
     } catch (error) {
       setSaveMessage(error instanceof Error ? error.message : String(error));
@@ -387,12 +428,20 @@ export function GameView() {
             onSave={saveGame}
             onLoad={loadGame}
             onClear={clearLocalSave}
-            onJump={jumpToScene}
+            onShortcuts={() => setShortcutsOpen(true)}
             audioInfo={{
               music: presentation.music,
               sfx: presentation.sfxQueue,
             }}
           />
+
+          {shortcutsOpen ? (
+            <ShortcutsPanel
+              currentPath={currentShortcutPath}
+              onJump={jumpToScene}
+              onClose={() => setShortcutsOpen(false)}
+            />
+          ) : null}
 
           {showChoices ? (
             <div className="choice-overlay">

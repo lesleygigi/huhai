@@ -252,64 +252,165 @@
   padding: 20px 0;
 }
 
-.shortcuts-panel {
+.shortcut-graph-overlay {
+  position: absolute;
+  z-index: 4;
+  inset: 32px 120px 24px;
   display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   gap: 12px;
+  padding: 18px;
+  border: 1px solid rgb(244 240 232 / 22%);
+  border-radius: 8px;
+  background: rgb(10 13 12 / 92%);
+  box-shadow: 0 24px 80px rgb(0 0 0 / 45%);
 }
 
-.chapter-group {
-  border: 1px solid rgb(244 240 232 / 12%);
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.chapter-header {
-  width: 100%;
+.shortcut-graph-header {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  background: rgb(255 255 255 / 5%);
-  color: #9ed0b7;
-  font-weight: 600;
-  text-align: left;
-  border: none;
-  border-bottom: 1px solid rgb(244 240 232 / 12%);
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.shortcut-graph-header h2 {
+  margin: 0;
+  color: #fffdf7;
+  font-size: 28px;
+  font-weight: 650;
+}
+
+.shortcut-graph-board {
+  position: relative;
+  min-height: 0;
+  overflow-x: auto;
+  overflow-y: auto;
+  border: 1px solid rgb(244 240 232 / 14%);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgb(158 208 183 / 7%), transparent 48%),
+    repeating-linear-gradient(
+      90deg,
+      rgb(244 240 232 / 5%) 0,
+      rgb(244 240 232 / 5%) 1px,
+      transparent 1px,
+      transparent 56px
+    ),
+    rgb(18 23 21 / 86%);
+  scrollbar-color: rgb(158 208 183 / 62%) rgb(6 8 8 / 72%);
+  scrollbar-width: thin;
+}
+
+.shortcut-graph-board::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+.shortcut-graph-board::-webkit-scrollbar-track {
+  background: rgb(6 8 8 / 72%);
+}
+
+.shortcut-graph-board::-webkit-scrollbar-thumb {
+  border: 3px solid rgb(6 8 8 / 72%);
+  border-radius: 8px;
+  background: rgb(158 208 183 / 62%);
+}
+
+.shortcut-graph-svg {
+  display: block;
+  min-width: 19000px;
+  height: 3200px;
+  min-height: 3200px;
+}
+
+.shortcut-graph-lines path {
+  fill: none;
+  stroke: rgb(232 205 143 / 68%);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.shortcut-graph-lines marker path {
+  fill: rgb(232 205 143 / 76%);
+}
+
+.shortcut-edge-label rect {
+  fill: rgb(10 13 12 / 90%);
+  stroke: rgb(232 205 143 / 36%);
+}
+
+.shortcut-edge-label text {
+  fill: #f3d994;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.shortcut-svg-node {
   cursor: pointer;
 }
 
-.chapter-header:hover {
-  background: rgb(255 255 255 / 10%);
+.shortcut-svg-node rect {
+  fill: rgb(31 45 38 / 94%);
+  stroke: rgb(158 208 183 / 58%);
+  stroke-width: 1.5px;
 }
 
-.chapter-toggle-icon {
-  font-size: 10px;
-  width: 12px;
-  opacity: 0.6;
+.shortcut-svg-node:hover rect {
+  fill: rgb(38 50 45 / 94%);
+  stroke: rgb(158 208 183 / 78%);
 }
 
-.scene-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  padding: 10px;
-  background: rgb(0 0 0 / 20%);
+.shortcut-svg-node text {
+  font-family: "Songti SC", "STSong", "Noto Serif CJK SC", "SimSun", serif;
+  letter-spacing: 0;
+  text-anchor: middle;
+  pointer-events: none;
 }
 
-.scene-item {
-  padding: 8px;
-  background: rgb(255 255 255 / 5%);
-  border: 1px solid rgb(244 240 232 / 10%);
-  border-radius: 4px;
-  color: #f4f0e8;
+.shortcut-node-chapter {
+  fill: #9ed0b7;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.shortcut-node-label {
+  fill: #f7ead1;
+  font-size: 24px;
+  font-weight: 650;
+}
+
+.shortcut-node-current rect {
+  fill: rgb(74 64 42 / 94%);
+  stroke: #f7ead1;
+  stroke-width: 2px;
+}
+
+.shortcut-node-current .shortcut-node-label {
+  fill: #fffdf7;
+}
+
+.shortcut-graph-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #cbd7d1;
   font-size: 14px;
-  text-align: center;
-  cursor: pointer;
 }
 
-.scene-item:hover {
-  border-color: #9ed0b7;
-  background: rgb(158 208 183 / 10%);
+.shortcut-graph-legend span {
+  padding: 6px 10px;
+  border: 1px solid rgb(244 240 232 / 14%);
+  border-radius: 6px;
+  background: rgb(255 255 255 / 5%);
+}
+
+.legend-current {
+  color: #f7ead1;
+}
+
+.legend-authored {
+  color: #9ed0b7;
 }
 
 .slot-list {
@@ -390,6 +491,7 @@
 .save-actions button,
 .audio-status button,
 .overlay-header button,
+.shortcut-graph-header button,
 .menu-main-nav button {
   border: 1px solid rgb(244 240 232 / 24%);
   border-radius: 6px;
@@ -402,7 +504,8 @@
 .menu-actions button,
 .save-actions button,
 .audio-status button,
-.overlay-header button {
+.overlay-header button,
+.shortcut-graph-header button {
   min-height: 36px;
   padding: 8px 10px;
 }
@@ -794,6 +897,33 @@
     right: 10px;
     width: calc(100% - 20px);
     max-height: calc(100% - 98px);
+  }
+
+  .shortcut-graph-overlay {
+    inset: 76px 10px 10px;
+    padding: 12px;
+  }
+
+  .shortcut-graph-header h2 {
+    font-size: 22px;
+  }
+
+  .shortcut-graph-svg {
+    min-width: 10400px;
+    height: 2200px;
+    min-height: 2200px;
+  }
+
+  .shortcut-node-label {
+    font-size: 22px;
+  }
+
+  .shortcut-node-chapter {
+    font-size: 14px;
+  }
+
+  .shortcut-graph-legend {
+    font-size: 12px;
   }
 
   .dialogue-stage {
