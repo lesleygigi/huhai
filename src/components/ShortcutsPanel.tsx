@@ -1,4 +1,10 @@
-import { useState, useCallback, type WheelEvent } from "react";
+import {
+  useState,
+  useCallback,
+  useLayoutEffect,
+  useRef,
+  type WheelEvent,
+} from "react";
 import { shortcutEdges, shortcutNodes } from "../engine/shortcuts";
 
 type ShortcutsPanelProps = {
@@ -69,11 +75,12 @@ export function ShortcutsPanel({
   onJump,
   onClose,
 }: ShortcutsPanelProps) {
-  const [zoom, setZoom] = useState(0.25); // 初始缩放比例小一些，以便看到更多内容
+  const [zoom, setZoom] = useState(1);
+  const boardRef = useRef<HTMLDivElement | null>(null);
 
   const handleZoomIn = () => setZoom((prev) => Math.min(prev + 0.05, 1.5));
   const handleZoomOut = () => setZoom((prev) => Math.max(prev - 0.05, 0.05));
-  const handleResetZoom = () => setZoom(0.25);
+  const handleResetZoom = () => setZoom(1);
 
   const handleWheel = useCallback((e: WheelEvent) => {
     if (e.ctrlKey) {
@@ -82,6 +89,32 @@ export function ShortcutsPanel({
       setZoom((prev) => Math.min(Math.max(prev + delta, 0.05), 1.5));
     }
   }, []);
+
+  useLayoutEffect(() => {
+    if (!currentPath) {
+      return;
+    }
+
+    const board = boardRef.current;
+    const currentNode = shortcutNodes.find((node) => node.path === currentPath);
+
+    if (!board || !currentNode) {
+      return;
+    }
+
+    const frameId = window.requestAnimationFrame(() => {
+      const point = toGraphPoint(currentNode);
+      const targetLeft = point.x * zoom - board.clientWidth / 2;
+      const targetTop = point.y * zoom - board.clientHeight / 2;
+      const maxScrollLeft = Math.max(0, board.scrollWidth - board.clientWidth);
+      const maxScrollTop = Math.max(0, board.scrollHeight - board.clientHeight);
+
+      board.scrollLeft = Math.min(Math.max(targetLeft, 0), maxScrollLeft);
+      board.scrollTop = Math.min(Math.max(targetTop, 0), maxScrollTop);
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [currentPath]);
 
   return (
     <section className="shortcut-graph-overlay" aria-label="快捷通道">
@@ -103,7 +136,11 @@ export function ShortcutsPanel({
         </div>
       </header>
 
-      <div className="shortcut-graph-board" onWheel={handleWheel}>
+      <div
+        ref={boardRef}
+        className="shortcut-graph-board"
+        onWheel={handleWheel}
+      >
         <svg
           className="shortcut-graph-svg"
           viewBox={`0 0 ${graphWidth} ${graphHeight}`}
