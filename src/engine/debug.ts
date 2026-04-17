@@ -39,12 +39,8 @@ export function getRouteName(flags: string[]): string {
     return "路线冲突";
   }
 
-  if (flags.includes("矫诏同谋")) {
-    return "主线";
-  }
-
-  if (flags.includes("隐忍待发")) {
-    return "隐忍线";
+  if (flags.includes("大义灭亲")) {
+    return "IF扶苏即位线";
   }
 
   if (flags.includes("知情不报")) {
@@ -53,6 +49,14 @@ export function getRouteName(flags: string[]): string {
 
   if (flags.includes("曾试图告发")) {
     return "告发线";
+  }
+
+  if (flags.includes("隐忍待发")) {
+    return "隐忍线";
+  }
+
+  if (flags.includes("矫诏同谋")) {
+    return "主线";
   }
 
   return "序章";

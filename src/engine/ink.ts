@@ -32,6 +32,7 @@ const trackedVariables = [
   "ziying",
   "zhang_han",
   "meng_yi",
+  "fusu",
   "strategy",
   "zhao_gao_evidence",
   "flags",

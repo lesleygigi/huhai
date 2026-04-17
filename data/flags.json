@@ -586,5 +586,292 @@
     "chapter": "第五章",
     "description": "隐忍线逃亡后藏于关中，伺机保全宗族。",
     "exclusiveGroup": "chapter5_ending"
+  },
+  {
+    "id": "if_yongcheng_seclusion",
+    "name": "雍城闭门",
+    "chapter": "IF线第一章",
+    "description": "扶苏即位后，胡亥选择去雍城旧都闭门读书，远离朝堂。",
+    "exclusiveGroup": "if_chapter1_fate"
+  },
+  {
+    "id": "if_bashu_fief",
+    "name": "巴蜀之封",
+    "chapter": "IF线第一章",
+    "description": "扶苏即位后，胡亥选择受封蜀侯，前往巴蜀守边。",
+    "exclusiveGroup": "if_chapter1_fate"
+  },
+  {
+    "id": "zhao_gao_last_lesson",
+    "name": "赵高的最后一课",
+    "chapter": "IF线第一章",
+    "description": "胡亥离京前探访狱中的赵高，留下对扶苏既感激又疏离的阴影。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "ziying_comfort",
+    "name": "子婴的劝慰",
+    "chapter": "IF线第一章",
+    "description": "子婴在路途中解释扶苏让胡亥离京亦有保护之意。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "garden_politics_revised",
+    "name": "菜园论政·改",
+    "chapter": "IF线第一章",
+    "description": "子婴辞行前提醒胡亥仁君容易被欺，咸阳暗流未止。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "meng_yi_short_sword",
+    "name": "蒙毅所赠短剑",
+    "chapter": "IF线第一章",
+    "description": "蒙毅离京送别时将先帝所赐短剑转赠胡亥。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "if_fief_debate",
+    "name": "分封之争",
+    "chapter": "IF线第二章",
+    "description": "扶苏朝堂因郡国并行与分封问题分裂。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "if_send_secret_letter",
+    "name": "呈送密信",
+    "chapter": "IF线第二章",
+    "description": "胡亥将匿名密信呈送扶苏，自证清白并提醒咸阳有人织网。",
+    "exclusiveGroup": "if_chapter2_letter"
+  },
+  {
+    "id": "if_keep_secret_letter",
+    "name": "留存密信",
+    "chapter": "IF线第二章",
+    "description": "胡亥留存匿名密信，选择静观咸阳局势变化。",
+    "exclusiveGroup": "if_chapter2_letter"
+  },
+  {
+    "id": "if_burn_secret_letter",
+    "name": "焚毁密信",
+    "chapter": "IF线第二章",
+    "description": "胡亥焚毁匿名密信，不让挑拨之计左右自己。",
+    "exclusiveGroup": "if_chapter2_letter"
+  },
+  {
+    "id": "if_zhao_gao_game",
+    "name": "赵高的棋局",
+    "chapter": "IF线第二章",
+    "description": "赵高在廷尉狱中借分封之争布下新的棋局。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "if_shu_wang_fief",
+    "name": "蜀王之封",
+    "chapter": "IF线第三章",
+    "description": "胡亥进封蜀王，领巴、蜀、汉中三郡。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "if_lay_low",
+    "name": "韬光养晦",
+    "chapter": "IF线第三章",
+    "description": "蜀王胡亥选择不急夺权，先深耕巴蜀民心。",
+    "exclusiveGroup": "if_chapter3_shu_path"
+  },
+  {
+    "id": "if_train_army",
+    "name": "整军经武",
+    "chapter": "IF线第三章",
+    "description": "蜀王胡亥清点兵册、设讲武堂，积蓄自保兵力。",
+    "exclusiveGroup": "if_chapter3_shu_path"
+  },
+  {
+    "id": "if_contact_kings",
+    "name": "联络诸王",
+    "chapter": "IF线第三章",
+    "description": "蜀王胡亥秘密联络齐、赵、燕、韩等封王，互通声气。",
+    "exclusiveGroup": "if_chapter3_shu_path"
+  },
+  {
+    "id": "if_send_again",
+    "name": "再次呈送",
+    "chapter": "IF线第三章",
+    "description": "胡亥再次将挑拨密信转呈扶苏，巩固兄弟信任。",
+    "exclusiveGroup": "if_chapter3_second_letter"
+  },
+  {
+    "id": "if_wait_and_watch",
+    "name": "静观其变",
+    "chapter": "IF线第三章",
+    "description": "胡亥留存第二封密信，选择按兵不动观察幕后手段。",
+    "exclusiveGroup": "if_chapter3_second_letter"
+  },
+  {
+    "id": "if_reconcile_qi",
+    "name": "主动化解",
+    "chapter": "IF线第三章",
+    "description": "胡亥秘密联络齐王，试图在挑拨成形前化解猜忌。",
+    "exclusiveGroup": "if_chapter3_second_letter"
+  },
+  {
+    "id": "if_treason_suspicion",
+    "name": "谋逆嫌疑",
+    "chapter": "IF线第三章",
+    "description": "主动联络诸王的准备不够周密，存在被咸阳扣上谋逆罪名的风险。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "if_court_remonstrance",
+    "name": "朝堂直谏",
+    "chapter": "IF线第四章",
+    "description": "宗室朝会上，胡亥支持诸王并直言分封无权之弊。",
+    "exclusiveGroup": "if_chapter4_court_answer"
+  },
+  {
+    "id": "if_court_neutral",
+    "name": "朝堂中立",
+    "chapter": "IF线第四章",
+    "description": "宗室朝会上，胡亥建议制定郡国职官令，保持中立。",
+    "exclusiveGroup": "if_chapter4_court_answer"
+  },
+  {
+    "id": "if_court_rebuke",
+    "name": "朝堂驳斥",
+    "chapter": "IF线第四章",
+    "description": "宗室朝会上，胡亥支持扶苏并驳斥诸王当众发难。",
+    "exclusiveGroup": "if_chapter4_court_answer"
+  },
+  {
+    "id": "if_advise_power",
+    "name": "劝放权",
+    "chapter": "IF线第四章",
+    "description": "兄弟夜话中，胡亥劝扶苏给予诸王实权以固屏藩。",
+    "exclusiveGroup": "if_chapter4_brother_talk"
+  },
+  {
+    "id": "if_tui_en_plan",
+    "name": "推恩之策",
+    "chapter": "IF线第四章",
+    "description": "兄弟夜话中，胡亥向扶苏献上分封诸子的推恩之策。",
+    "exclusiveGroup": "if_chapter4_brother_talk"
+  },
+  {
+    "id": "if_silent_answer",
+    "name": "沉默以对",
+    "chapter": "IF线第四章",
+    "description": "兄弟夜话中，胡亥选择不为扶苏的分封困局献策。",
+    "exclusiveGroup": "if_chapter4_brother_talk"
+  },
+  {
+    "id": "if_zhao_captured",
+    "name": "赵高落网",
+    "chapter": "IF线第四章",
+    "description": "胡亥密报或追杀赵高，使赵高不再能完全藏于暗处。",
+    "exclusiveGroup": "if_zhao_status"
+  },
+  {
+    "id": "if_zhao_at_large",
+    "name": "赵高在逃",
+    "chapter": "IF线第四章",
+    "description": "胡亥未能处理赵高踪迹，赵高仍在关东暗处布局。",
+    "exclusiveGroup": "if_zhao_status"
+  },
+  {
+    "id": "if_return_shu_clean",
+    "name": "返蜀证清白",
+    "chapter": "IF线第四章",
+    "description": "第三封密信后，胡亥选择按诏返回巴蜀，以证明自己无异心。",
+    "exclusiveGroup": "if_chapter4_final_choice"
+  },
+  {
+    "id": "if_stay_xianyang",
+    "name": "滞留咸阳",
+    "chapter": "IF线第四章",
+    "description": "第三封密信后，胡亥以染疾为由暂留咸阳，观察局势。",
+    "exclusiveGroup": "if_chapter4_final_choice"
+  },
+  {
+    "id": "if_secret_departure",
+    "name": "秘密离京",
+    "chapter": "IF线第四章",
+    "description": "第三封密信后，胡亥秘密离京返回巴蜀，准备整军自保。",
+    "exclusiveGroup": "if_chapter4_final_choice"
+  },
+  {
+    "id": "if_loyal_suppression",
+    "name": "表忠助剿",
+    "chapter": "IF线第五章",
+    "description": "齐王起兵后，胡亥上书扶苏，请率巴蜀兵马协助平叛。",
+    "exclusiveGroup": "if_chapter5_shu_choice"
+  },
+  {
+    "id": "if_wait_and_see",
+    "name": "按兵不动",
+    "chapter": "IF线第五章",
+    "description": "齐王起兵后，胡亥选择守住巴蜀，观望局势。",
+    "exclusiveGroup": "if_chapter5_shu_choice"
+  },
+  {
+    "id": "if_secret_qi_contact",
+    "name": "暗通齐王",
+    "chapter": "IF线第五章",
+    "description": "齐王起兵后，胡亥秘密联络齐王，准备伺机响应诸王。",
+    "exclusiveGroup": "if_chapter5_shu_choice"
+  },
+  {
+    "id": "if_bashu_rebellion",
+    "name": "巴蜀起兵",
+    "chapter": "IF线第五章",
+    "description": "胡亥率蜀兵出汉中，试图争取巴蜀自主。",
+    "exclusiveGroup": null
+  },
+  {
+    "id": "if_ending_renjun_assistant",
+    "name": "仁君之佐",
+    "chapter": "IF线第五章",
+    "description": "胡亥辅佐扶苏开创盛世，成为仁君之佐。",
+    "exclusiveGroup": "if_chapter5_ending"
+  },
+  {
+    "id": "if_ending_bashu_king",
+    "name": "巴蜀王",
+    "chapter": "IF线第五章",
+    "description": "胡亥据巴蜀自立，与咸阳维持微妙平衡。",
+    "exclusiveGroup": "if_chapter5_ending"
+  },
+  {
+    "id": "if_ending_shu_choice",
+    "name": "蜀王的选择",
+    "chapter": "IF线第五章",
+    "description": "胡亥选择观望后支持扶苏，安全但平庸地度过余生。",
+    "exclusiveGroup": "if_chapter5_ending"
+  },
+  {
+    "id": "if_ending_xianyang_winter",
+    "name": "咸阳的冬天",
+    "chapter": "IF线第五章",
+    "description": "胡亥滞留咸阳，在客馆冬雪中与扶苏渐行渐远。",
+    "exclusiveGroup": "if_chapter5_ending"
+  },
+  {
+    "id": "if_ending_kings_alliance",
+    "name": "诸王同盟",
+    "chapter": "IF线第五章",
+    "description": "胡亥加入诸王同盟，兵败后被囚于雍城旧宫。",
+    "exclusiveGroup": "if_chapter5_ending"
+  },
+  {
+    "id": "if_ending_brothers_war",
+    "name": "兄弟阋墙",
+    "chapter": "IF线第五章",
+    "description": "胡亥起兵失败，死于汉中平原。",
+    "exclusiveGroup": "if_chapter5_ending"
+  },
+  {
+    "id": "if_ending_fusu_death",
+    "name": "扶苏之殂",
+    "chapter": "IF线第五章",
+    "description": "赵高在逃导致扶苏遇刺，大秦仍二世而亡。",
+    "exclusiveGroup": "if_chapter5_ending"
   }
 ]

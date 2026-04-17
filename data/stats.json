@@ -64,6 +64,14 @@
     "description": "蒙毅对胡亥的态度。"
   },
   {
+    "id": "fusu",
+    "name": "扶苏好感度",
+    "initial": 0,
+    "min": -5,
+    "max": 10,
+    "description": "扶苏对胡亥的信任与疏离程度。"
+  },
+  {
     "id": "strategy",
     "name": "权谋值",
     "initial": 0,

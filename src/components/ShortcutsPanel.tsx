@@ -1,3 +1,4 @@
+import { useState, useCallback, type WheelEvent } from "react";
 import { shortcutEdges, shortcutNodes } from "../engine/shortcuts";
 
 type ShortcutsPanelProps = {
@@ -7,19 +8,17 @@ type ShortcutsPanelProps = {
 };
 
 const nodeById = new Map(shortcutNodes.map((node) => [node.id, node]));
-const outgoingCount = shortcutEdges.reduce<Record<string, number>>(
-  (counts, edge) => ({
-    ...counts,
-    [edge.from]: (counts[edge.from] ?? 0) + 1,
-  }),
-  {}
-);
+const outgoingCount: Record<string, number> = {};
+for (const edge of shortcutEdges) {
+  outgoingCount[edge.from] = (outgoingCount[edge.from] ?? 0) + 1;
+}
+
 const graphWidth = 19000;
-const graphHeight = 3200;
+const graphHeight = 7200;
 const nodeWidth = 172;
 const nodeHeight = 72;
 const coordinateWidth = 1600;
-const coordinateHeight = 260;
+const coordinateHeight = 360;
 
 function toGraphPoint(node: { x: number; y: number }) {
   return {
@@ -70,6 +69,20 @@ export function ShortcutsPanel({
   onJump,
   onClose,
 }: ShortcutsPanelProps) {
+  const [zoom, setZoom] = useState(0.25); // 初始缩放比例小一些，以便看到更多内容
+
+  const handleZoomIn = () => setZoom((prev) => Math.min(prev + 0.05, 1.5));
+  const handleZoomOut = () => setZoom((prev) => Math.max(prev - 0.05, 0.05));
+  const handleResetZoom = () => setZoom(0.25);
+
+  const handleWheel = useCallback((e: WheelEvent) => {
+    if (e.ctrlKey) {
+      // 不再 preventDefault，让用户可以正常缩放
+      const delta = e.deltaY > 0 ? -0.02 : 0.02;
+      setZoom((prev) => Math.min(Math.max(prev + delta, 0.05), 1.5));
+    }
+  }, []);
+
   return (
     <section className="shortcut-graph-overlay" aria-label="快捷通道">
       <header className="shortcut-graph-header">
@@ -77,17 +90,25 @@ export function ShortcutsPanel({
           <p className="eyebrow">快捷通道</p>
           <h2>场景分支图</h2>
         </div>
-        <button type="button" onClick={onClose}>
-          关闭
-        </button>
+        <div className="shortcut-graph-controls">
+          <div className="zoom-controls">
+            <button type="button" onClick={handleZoomOut} title="缩小">－</button>
+            <span className="zoom-value">{Math.round(zoom * 100)}%</span>
+            <button type="button" onClick={handleZoomIn} title="放大">＋</button>
+            <button type="button" onClick={handleResetZoom} className="btn-secondary">重置</button>
+          </div>
+          <button type="button" onClick={onClose} className="btn-close">
+            关闭
+          </button>
+        </div>
       </header>
 
-      <div className="shortcut-graph-board">
+      <div className="shortcut-graph-board" onWheel={handleWheel}>
         <svg
           className="shortcut-graph-svg"
           viewBox={`0 0 ${graphWidth} ${graphHeight}`}
-          width={graphWidth}
-          height={graphHeight}
+          width={graphWidth * zoom}
+          height={graphHeight * zoom}
           role="img"
           aria-label="场景分支图"
         >

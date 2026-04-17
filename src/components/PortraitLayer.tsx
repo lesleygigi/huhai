@@ -12,13 +12,9 @@ export function PortraitLayer({ portraits, portraitPaths }: PortraitLayerProps) 
     <div className="portrait-layer" aria-hidden="true">
       {positions.map((position) => {
         const portrait = portraits[position];
-
-        if (!portrait) {
-          return null;
-        }
+        if (!portrait) return null;
 
         const imagePath = portraitPaths[position];
-
         return (
           <div key={position} className={`portrait portrait-${position}`}>
             {imagePath ? (
