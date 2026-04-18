@@ -187,6 +187,104 @@
   gap: 8px;
 }
 
+.account-panel {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 12px;
+  border: 1px solid rgb(158 208 183 / 18%);
+  border-radius: 8px;
+  background: rgb(18 24 22 / 92%);
+}
+
+.account-panel-header {
+  display: grid;
+  gap: 4px;
+}
+
+.account-panel-header strong {
+  color: #fffdf7;
+  font-size: 18px;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.account-panel-status,
+.account-panel-message,
+.auth-help,
+.auth-status,
+.auth-error {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.account-panel-status,
+.auth-help {
+  color: #cbd7d1;
+}
+
+.account-panel-message,
+.auth-status {
+  color: #9ed0b7;
+}
+
+.auth-error {
+  color: #ffb5b5;
+}
+
+.account-panel-actions,
+.auth-actions,
+.auth-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.account-panel-actions button,
+.auth-actions button,
+.auth-tab {
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid rgb(244 240 232 / 24%);
+  border-radius: 6px;
+  color: #fffdf7;
+  background: rgb(25 31 29 / 88%);
+  cursor: pointer;
+}
+
+.auth-panel {
+  width: min(520px, calc(100vw - 32px));
+  max-height: min(620px, calc(100svh - 32px));
+}
+
+.auth-panel-body {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  overflow: auto;
+}
+
+.auth-tab.is-active {
+  border-color: rgb(158 208 183 / 60%);
+  background: rgb(37 51 46 / 96%);
+}
+
+.auth-field {
+  margin: 0;
+}
+
+.auth-field input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid rgb(244 240 232 / 20%);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: #f4f0e8;
+  background: #171b1a;
+}
+
 .menu-main-nav button {
   width: 100%;
   min-height: 44px;

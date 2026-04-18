@@ -12,6 +12,7 @@
     "story:watch": "node --watch-path=story node_modules/inkjs/bin/inkjs-compiler.js -o public/story/main.json story/main.ink"
   },
   "dependencies": {
+    "@cloudbase/js-sdk": "^3.3.3",
     "inkjs": "^2.4.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

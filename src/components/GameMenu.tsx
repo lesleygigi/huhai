@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { type StorySnapshot } from "../engine/ink";
 import { type GameSettings } from "../engine/settings";
+import { type AuthUser } from "../engine/auth";
 import { StatsPanel } from "./StatsPanel";
 import { RelationsPanel } from "./RelationsPanel";
 import { FlagsPanel } from "./FlagsPanel";
@@ -9,6 +10,7 @@ import { LoadPanel } from "./LoadPanel";
 import { DebugPanel } from "./DebugPanel";
 import { type ChoiceHistoryItem } from "../engine/debug";
 import { type SlotInfo } from "../engine/save";
+import { AccountPanel } from "./AccountPanel";
 
 type MenuPage =
   | "main"
@@ -37,6 +39,13 @@ type GameMenuProps = {
   onLoad: (slotId: number) => void;
   onClear: (slotId: number) => void;
   onShortcuts: () => void;
+  authConfigured: boolean;
+  authReady: boolean;
+  authUser: AuthUser | null;
+  authStatusMessage: string;
+  onOpenLogin: () => void;
+  onOpenRegister: () => void;
+  onSignOut: () => void;
   audioInfo: {
     music: string | undefined;
     sfx: string[];
@@ -60,6 +69,13 @@ export function GameMenu({
   onLoad,
   onClear,
   onShortcuts,
+  authConfigured,
+  authReady,
+  authUser,
+  authStatusMessage,
+  onOpenLogin,
+  onOpenRegister,
+  onSignOut,
   audioInfo,
 }: GameMenuProps) {
   const [currentPage, setCurrentPage] = useState<MenuPage>("main");
@@ -103,6 +119,15 @@ export function GameMenu({
       default:
         return (
           <div className="menu-main-nav">
+            <AccountPanel
+              configured={authConfigured}
+              authReady={authReady}
+              currentUser={authUser}
+              statusMessage={authStatusMessage}
+              onOpenLogin={onOpenLogin}
+              onOpenRegister={onOpenRegister}
+              onSignOut={onSignOut}
+            />
             <button type="button" onClick={onClose}>
               继续游戏
             </button>

@@ -30,6 +30,15 @@ import {
   type GameSettings,
 } from "../engine/settings";
 import { getShortcutPathBySceneName } from "../engine/shortcuts";
+import {
+  getCurrentAuthUser,
+  signInWithEmailAndPassword,
+  signOutAuth,
+  signUpWithEmailAndPassword,
+  type AuthUser,
+} from "../engine/auth";
+import { isCloudbaseConfigured } from "../lib/cloudbase";
+import { AuthModal } from "./AuthModal";
 import { BackgroundLayer } from "./BackgroundLayer";
 import { ChoiceList } from "./ChoiceList";
 import { GameMenu } from "./GameMenu";
@@ -44,6 +53,8 @@ type LoadState =
   | { status: "loading" }
   | { status: "ready"; runtime: StoryRuntime; snapshot: StorySnapshot }
   | { status: "error"; message: string };
+
+type AuthModalMode = "login" | "register";
 
 const speakerCharacterMap: Record<string, string> = {
   胡亥: "huhai",
@@ -150,6 +161,13 @@ export function GameView() {
   const [presentation, setPresentation] = useState<PresentationState>(
     initialPresentationState
   );
+  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
+  const [authReady, setAuthReady] = useState(false);
+  const [authMessage, setAuthMessage] = useState("");
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState<AuthModalMode>("login");
+
+  const authConfigured = isCloudbaseConfigured();
 
   const routeName = useMemo(() => {
     if (loadState.status !== "ready") {
@@ -208,6 +226,38 @@ export function GameView() {
       mounted = false;
     };
   }, []);
+
+  useEffect(() => {
+    let mounted = true;
+
+    if (!authConfigured) {
+      setAuthReady(true);
+      setAuthMessage("尚未配置 CloudBase 环境 ID，账号功能暂不可用。");
+      return () => {
+        mounted = false;
+      };
+    }
+
+    getCurrentAuthUser()
+      .then((user) => {
+        if (!mounted) return;
+        setAuthUser(user);
+        setAuthReady(true);
+        setAuthMessage(user ? "已恢复登录状态。" : "");
+      })
+      .catch((error: unknown) => {
+        if (!mounted) return;
+        setAuthReady(true);
+        setAuthUser(null);
+        setAuthMessage(
+          error instanceof Error ? error.message : "恢复登录状态失败。"
+        );
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [authConfigured]);
 
   function updateSettings(nextSettings: GameSettings) {
     setSettings(nextSettings);
@@ -356,6 +406,30 @@ export function GameView() {
     setSaveMessage(`已清除槽位 ${slotId} 的存档。`);
   }
 
+  async function handleLogin(email: string, password: string) {
+    const user = await signInWithEmailAndPassword(email, password);
+    setAuthUser(user);
+    setAuthReady(true);
+    setAuthMessage(user ? `已登录：${user.email}` : "登录成功，但未获取到用户信息。");
+    setAuthModalOpen(false);
+  }
+
+  async function handleRegister(email: string, password: string) {
+    await signUpWithEmailAndPassword(email, password);
+    setAuthMessage(`验证邮件已发送到 ${email}，请完成邮箱验证后再登录。`);
+    setAuthModalMode("login");
+  }
+
+  async function handleSignOut() {
+    try {
+      await signOutAuth();
+      setAuthUser(null);
+      setAuthMessage("已退出登录。");
+    } catch (error) {
+      setAuthMessage(error instanceof Error ? error.message : "退出登录失败。");
+    }
+  }
+
   return (
     <main className="game-view" style={viewStyle}>
       <section className="game-shell" aria-label="胡亥模拟器">
@@ -398,6 +472,19 @@ export function GameView() {
             onLoad={loadGame}
             onClear={clearLocalSave}
             onShortcuts={() => setShortcutsOpen(true)}
+            authConfigured={authConfigured}
+            authReady={authReady}
+            authUser={authUser}
+            authStatusMessage={authMessage}
+            onOpenLogin={() => {
+              setAuthModalMode("login");
+              setAuthModalOpen(true);
+            }}
+            onOpenRegister={() => {
+              setAuthModalMode("register");
+              setAuthModalOpen(true);
+            }}
+            onSignOut={handleSignOut}
             audioInfo={{ music: presentation.music, sfx: presentation.sfxQueue }}
           />
 
@@ -439,6 +526,16 @@ export function GameView() {
         settings={settings}
         onChange={updateSettings}
         onClose={() => setSettingsOpen(false)}
+      />
+      <AuthModal
+        open={authModalOpen}
+        mode={authModalMode}
+        configured={authConfigured}
+        statusMessage={authMessage}
+        onClose={() => setAuthModalOpen(false)}
+        onSwitchMode={setAuthModalMode}
+        onLogin={handleLogin}
+        onRegister={handleRegister}
       />
     </main>
   );
