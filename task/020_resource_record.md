@@ -22,9 +22,18 @@
 ## CloudBase 静态托管
 
 - 默认访问域名：`test-d7gmoq0dn303446ba-1422160391.tcloudbaseapp.com`
-- 部署方式：`上传构建产物 / 上传代码包 / Git 仓库部署`
+- 部署方式：`GitHub Actions + CloudBase CLI`
 - 当前发布状态：`未开始 / 已部署 / 待验证`
 - 备注：
+
+## GitHub Actions
+
+- 工作流文件：`.github/workflows/deploy-cloudbase-hosting.yml`
+- 自动部署分支：`master`
+- GitHub Secrets：
+  - `TCB_SECRET_ID`
+  - `TCB_SECRET_KEY`
+  - `TCB_ENV_ID`
 
 ## 域名
 
