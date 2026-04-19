@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import {
   getFlagNames,
   getRouteName,
@@ -35,6 +35,8 @@ import {
   signInWithEmailAndPassword,
   signOutAuth,
   signUpWithEmailAndPassword,
+  verifyEmailSignUpCode,
+  type PendingEmailSignUp,
   type AuthUser,
 } from "../engine/auth";
 import { isCloudbaseConfigured } from "../lib/cloudbase";
@@ -166,6 +168,7 @@ export function GameView() {
   const [authMessage, setAuthMessage] = useState("");
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState<AuthModalMode>("login");
+  const pendingEmailSignUpRef = useRef<PendingEmailSignUp | null>(null);
 
   const authConfigured = isCloudbaseConfigured();
 
@@ -415,9 +418,34 @@ export function GameView() {
   }
 
   async function handleRegister(email: string, password: string) {
-    await signUpWithEmailAndPassword(email, password);
-    setAuthMessage(`验证邮件已发送到 ${email}，请完成邮箱验证后再登录。`);
+    const pending = await signUpWithEmailAndPassword(email, password);
+    pendingEmailSignUpRef.current = pending;
+    setAuthMessage(`验证码已发送到 ${email}，请输入邮件中的验证码完成注册。`);
+  }
+
+  async function handleRegisterVerify(verificationCode: string) {
+    const pending = pendingEmailSignUpRef.current;
+    if (!pending) {
+      throw new Error("注册会话已失效，请重新发送验证码。");
+    }
+
+    const user = await verifyEmailSignUpCode(pending, verificationCode);
+    pendingEmailSignUpRef.current = null;
+    setAuthUser(user);
+    setAuthReady(true);
+    setAuthMessage(user ? `注册并登录成功：${user.email}` : "注册成功，请继续登录。");
+    setAuthModalOpen(false);
     setAuthModalMode("login");
+  }
+
+  function closeAuthModal() {
+    pendingEmailSignUpRef.current = null;
+    setAuthModalOpen(false);
+  }
+
+  function switchAuthMode(mode: AuthModalMode) {
+    pendingEmailSignUpRef.current = null;
+    setAuthModalMode(mode);
   }
 
   async function handleSignOut() {
@@ -532,10 +560,11 @@ export function GameView() {
         mode={authModalMode}
         configured={authConfigured}
         statusMessage={authMessage}
-        onClose={() => setAuthModalOpen(false)}
-        onSwitchMode={setAuthModalMode}
+        onClose={closeAuthModal}
+        onSwitchMode={switchAuthMode}
         onLogin={handleLogin}
-        onRegister={handleRegister}
+        onRegisterStart={handleRegister}
+        onRegisterVerify={handleRegisterVerify}
       />
     </main>
   );

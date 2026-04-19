@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   validateEmail,
   validatePassword,
+  validateVerificationCode,
 } from "../engine/auth";
 
 type AuthMode = "login" | "register";
@@ -14,7 +15,8 @@ type AuthModalProps = {
   onClose: () => void;
   onSwitchMode: (mode: AuthMode) => void;
   onLogin: (email: string, password: string) => Promise<void>;
-  onRegister: (email: string, password: string) => Promise<void>;
+  onRegisterStart: (email: string, password: string) => Promise<void>;
+  onRegisterVerify: (verificationCode: string) => Promise<void>;
 };
 
 export function AuthModal({
@@ -25,10 +27,13 @@ export function AuthModal({
   onClose,
   onSwitchMode,
   onLogin,
-  onRegister,
+  onRegisterStart,
+  onRegisterVerify,
 }: AuthModalProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [verificationCode, setVerificationCode] = useState("");
+  const [awaitingVerification, setAwaitingVerification] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [localError, setLocalError] = useState("");
 
@@ -36,6 +41,8 @@ export function AuthModal({
     if (!open) {
       setEmail("");
       setPassword("");
+      setVerificationCode("");
+      setAwaitingVerification(false);
       setSubmitting(false);
       setLocalError("");
     }
@@ -57,20 +64,34 @@ export function AuthModal({
       return;
     }
 
-    const passwordError = validatePassword(password);
-    if (passwordError) {
-      setLocalError(passwordError);
-      return;
-    }
-
     setSubmitting(true);
     setLocalError("");
 
     try {
       if (mode === "login") {
+        const passwordError = validatePassword(password);
+        if (passwordError) {
+          setLocalError(passwordError);
+          return;
+        }
         await onLogin(email.trim(), password);
       } else {
-        await onRegister(email.trim(), password);
+        if (!awaitingVerification) {
+          const passwordError = validatePassword(password);
+          if (passwordError) {
+            setLocalError(passwordError);
+            return;
+          }
+          await onRegisterStart(email.trim(), password);
+          setAwaitingVerification(true);
+        } else {
+          const verificationCodeError = validateVerificationCode(verificationCode);
+          if (verificationCodeError) {
+            setLocalError(verificationCodeError);
+            return;
+          }
+          await onRegisterVerify(verificationCode.trim());
+        }
       }
     } catch (error) {
       setLocalError(error instanceof Error ? error.message : String(error));
@@ -128,13 +149,30 @@ export function AuthModal({
             autoComplete={mode === "login" ? "current-password" : "new-password"}
             placeholder="至少 8 位，需包含字母和数字"
             onChange={(event) => setPassword(event.currentTarget.value)}
+            disabled={mode === "register" && awaitingVerification}
           />
         </label>
+
+        {mode === "register" && awaitingVerification ? (
+          <label className="settings-field auth-field">
+            <span>邮箱验证码</span>
+            <input
+              type="text"
+              value={verificationCode}
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              placeholder="输入邮箱收到的验证码"
+              onChange={(event) => setVerificationCode(event.currentTarget.value)}
+            />
+          </label>
+        ) : null}
 
         <p className="auth-help">
           {mode === "login"
             ? "使用已验证的邮箱和密码登录。"
-            : "注册后 CloudBase 会发送验证邮件，完成验证后再登录。"}
+            : awaitingVerification
+              ? "验证码已发送到邮箱，请输入邮件中的验证码完成注册。"
+              : "先填写邮箱和密码，提交后系统会向邮箱发送验证码。"}
         </p>
 
         {localError ? <p className="auth-error">{localError}</p> : null}
@@ -147,10 +185,14 @@ export function AuthModal({
             {submitting
               ? mode === "login"
                 ? "登录中…"
-                : "注册中…"
+                : awaitingVerification
+                  ? "校验中…"
+                  : "发送中…"
               : mode === "login"
                 ? "登录"
-                : "注册"}
+                : awaitingVerification
+                  ? "完成注册"
+                  : "发送验证码"}
           </button>
         </div>
       </div>

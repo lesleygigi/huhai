@@ -6,6 +6,11 @@ export type AuthUser = {
   username?: string;
 };
 
+export type PendingEmailSignUp = {
+  email: string;
+  verifyOtp: (params: { token: string; messageId?: string }) => Promise<unknown>;
+};
+
 function normalizeAuthUser(user: {
   uid?: string;
   email?: string;
@@ -34,8 +39,37 @@ export async function getCurrentAuthUser(): Promise<AuthUser | null> {
 export async function signUpWithEmailAndPassword(
   email: string,
   password: string
-): Promise<void> {
-  await getCloudbaseAuth().signUpWithEmailAndPassword(email, password);
+): Promise<PendingEmailSignUp> {
+  const result = await getCloudbaseAuth().signUp({
+    email,
+    password,
+  });
+
+  const error = result?.error;
+  if (error) {
+    throw new Error(error.message ?? "发送邮箱验证码失败。");
+  }
+
+  const verifyOtp = result?.data?.verifyOtp;
+  if (typeof verifyOtp !== "function") {
+    throw new Error("CloudBase 未返回验证码校验函数。");
+  }
+
+  return {
+    email,
+    verifyOtp,
+  };
+}
+
+export async function verifyEmailSignUpCode(
+  pending: PendingEmailSignUp,
+  verificationCode: string
+): Promise<AuthUser | null> {
+  await pending.verifyOtp({
+    token: verificationCode,
+  });
+
+  return getCurrentAuthUser();
 }
 
 export async function signInWithEmailAndPassword(
@@ -75,6 +109,20 @@ export function validatePassword(password: string): string | null {
 
   if (!/[A-Za-z]/.test(password) || !/\d/.test(password)) {
     return "密码需同时包含字母和数字。";
+  }
+
+  return null;
+}
+
+export function validateVerificationCode(code: string): string | null {
+  const normalized = code.trim();
+
+  if (!normalized) {
+    return "请输入邮箱验证码。";
+  }
+
+  if (!/^\d{4,8}$/.test(normalized)) {
+    return "验证码格式不正确。";
   }
 
   return null;
