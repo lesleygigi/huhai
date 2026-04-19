@@ -11,6 +11,63 @@ export type PendingEmailSignUp = {
   verifyOtp: (params: { token: string; messageId?: string }) => Promise<unknown>;
 };
 
+type CloudbaseAuthErrorLike = {
+  category?: string;
+  code?: string;
+  message?: string;
+  helpMessage?: string;
+};
+
+function normalizeAuthErrorMessage(error: CloudbaseAuthErrorLike | null | undefined): string {
+  if (!error) {
+    return "认证失败，请稍后重试。";
+  }
+
+  const code = error.code ?? "";
+
+  if (code === "invalid_username_or_password" || code === "wrong_password") {
+    return "邮箱或密码错误。";
+  }
+
+  if (code === "user_not_found" || code === "not_found") {
+    return "账号不存在，请先注册。";
+  }
+
+  if (code === "invalid_password") {
+    return "密码错误。";
+  }
+
+  if (error.category === "provider_not_enabled" || code === "login_method_disabled") {
+    return "当前环境未开启邮箱密码登录。";
+  }
+
+  if (error.category === "user_pending") {
+    return "账号尚未完成验证，请先完成邮箱验证。";
+  }
+
+  return error.message || error.helpMessage || "认证失败，请稍后重试。";
+}
+
+function toErrorMessage(error: unknown, fallback: string): string {
+  if (error instanceof Error && error.message) {
+    return error.message;
+  }
+
+  if (typeof error === "string" && error) {
+    return error;
+  }
+
+  if (error && typeof error === "object") {
+    const authError = error as CloudbaseAuthErrorLike;
+    const normalized = normalizeAuthErrorMessage(authError);
+    if (normalized) {
+      return normalized;
+    }
+  }
+
+  return fallback;
+}
+
 function normalizeAuthUser(user: {
   uid?: string;
   email?: string;
@@ -47,7 +104,7 @@ export async function signUpWithEmailAndPassword(
 
   const error = result?.error;
   if (error) {
-    throw new Error(error.message ?? "发送邮箱验证码失败。");
+    throw new Error(normalizeAuthErrorMessage(error));
   }
 
   const verifyOtp = result?.data?.verifyOtp;
@@ -76,12 +133,33 @@ export async function signInWithEmailAndPassword(
   email: string,
   password: string
 ): Promise<AuthUser | null> {
-  await getCloudbaseAuth().signInWithEmailAndPassword(email, password);
-  return getCurrentAuthUser();
+  try {
+    const result = await getCloudbaseAuth().signInWithPassword({
+      email,
+      password,
+    });
+
+    if (result?.error) {
+      throw new Error(normalizeAuthErrorMessage(result.error));
+    }
+
+    const user = normalizeAuthUser(result?.data?.user ?? null);
+    if (user) {
+      return user;
+    }
+
+    return getCurrentAuthUser();
+  } catch (error) {
+    throw new Error(toErrorMessage(error, "登录失败，请稍后重试。"));
+  }
 }
 
 export async function signOutAuth(): Promise<void> {
-  await getCloudbaseAuth().signOut();
+  try {
+    await getCloudbaseAuth().signOut();
+  } catch (error) {
+    throw new Error(toErrorMessage(error, "退出登录失败。"));
+  }
 }
 
 export function validateEmail(email: string): string | null {
